@@ -27,14 +27,14 @@
     <section class="movement-list"></section>
     <div >
     <h4>Añadir nueva transaccion</h4>
-        <form id="añadir-nuevo-movimiento"  novalidate>
+        <form id="añadir-nuevo-movimiento"  method="post">
             <p>Concepto</p>
-            <input id=nombre-del-movimiento type="text" placeholder="Añade Concepto..." required/>            
+            <input id=nombre-del-movimiento type="text" placeholder="Añade Concepto..." required>            
             <p>Cantidad</p>
             <p id="instrucciones"> Introducir gastos con el signo negativo</p>
-            <input id=monto-del-movimiento type="number" step="any" placeholder="Ingrese la cantidad..." required/>  
+            <input  id=monto-del-movimiento type="number" step="any" placeholder="Ingrese la cantidad..." required>  
             <br>
-            <button type="submit" id="createMovimiento"  >Añadir Movimiento</button>   
+            <button  type="submit" id="createMovimiento"  >Añadir Movimiento</button>   
         </form>
     </div>
 
