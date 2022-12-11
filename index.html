@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTROL DE GASTOS</title>
+</head>
+<body>
+    <h2>CONTROL DE GASTOS</h2> 
+    <div></div>
+        <h4>Tu Ahorro</h4>     
+        <p id="ahorro-display">0</p>
+        </div>
+    <div>
+        <table class="default">
+            <tr>
+              <td>INGRESO</td>         
+              <td>GASTO</td>
+            </tr>         
+            <tr>         
+              <td id="ingreso">0</td>
+              <td id="gasto">0</script></td>
+            </tr>         
+         </table>
+    </div>
+
+    <h4>Historial</h4>
+    <p id="conceptosAñadidos"></p>
+    <div >
+    <h4>Añadir nueva transaccion</h4>
+
+        <form id="añadir-nuevo-movimiento"  novalidate>
+            <p>Concepto</p>
+            <input id=nombre-del-movimiento type="text" placeholder="Añade Concepto...">            
+            <p>Cantidad</p>
+            <input id=monto-del-movimiento type="number" step="any" placeholder="Ingrese la cantidad...">  
+            <button type="submit" id="createMovimiento"  >Añadir Movimiento</button>   
+        </form>
+    </div>
+
+    <section class="movement-list"></section>
+    
+    <script src="index.js"></script>
+   
+</body>
+</html>
