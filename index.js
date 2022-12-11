@@ -45,11 +45,8 @@ ahorroElement.textContent = totalAhorro
 ingresoElement.textContent= totalIngreso
 gastoElement.textContent= totalGasto
 
-//pintar objeto en html.
-let movementElement= document.createElement("article");
-  movementElement.innerHTML= `
-   <p> ${movement.concept}  :  ${movement.money} € </p> `
-movementListElement.appendChild(movementElement)
+
+drawMovements()
 
 //vacio imputs.
 inputMonto.value = "";
@@ -58,7 +55,16 @@ inputConcepto.value= "";
 })
 
 
+function drawMovements(){
 
+  movementListElement.innerHTML=""
+  todosLosMovimientos.forEach((movement)=>{
+  const movementElement= document.createElement("article");
+  movementElement.innerHTML= `
+   <p> ${movement.movement.concept}  :  ${movement.movement.money} € </p> `
+movementListElement.appendChild(movementElement)
+})
+}
 
 
 
