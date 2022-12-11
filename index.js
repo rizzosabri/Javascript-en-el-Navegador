@@ -78,8 +78,8 @@ function deleteMovement(id){
   todosLosMovimientos = todosLosMovimientos.filter(movement => id !== movement.id )
   actualizar(todosLosMovimientos)
   localStorage.setItem("movimientoGuardado", JSON.stringify(todosLosMovimientos));
-  todosLosMovimientosActualizados= JSON.parse(movimientosFromLocalStorage)
-  inicio(todosLosMovimientosActualizados)
+  todosLosMovimientos = JSON.parse(localStorage.getItem("movimientoGuardado"));
+  inicio(todosLosMovimientos)
 
 }
 
