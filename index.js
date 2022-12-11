@@ -6,6 +6,17 @@ const ingresoElement = document.querySelector("#ingreso")
 
 let todosLosMovimientos=[];
 
+inicio()
+
+function inicio (){
+  const movimientosFromLocalStorage = localStorage.getItem("movimientoGuardado");
+  todosLosMovimientos= JSON.parse(movimientosFromLocalStorage)
+  if(todosLosMovimientos){
+  drawMovement(todosLosMovimientos)
+  calculoIngerosyGastos(todosLosMovimientos)}
+  else {todosLosMovimientos=[];}
+}
+
 createMovementFormElement.addEventListener("submit",(event)=>
 {
     event.preventDefault();
@@ -18,7 +29,13 @@ createMovementFormElement.addEventListener("submit",(event)=>
       money: parseFloat(inputMonto.value),
       concept: inputConcepto.value,
       id: Math.floor(Math.random() * 100000000)
+      
     }) 
+    
+    localStorage.setItem("movimientoGuardado", JSON.stringify(todosLosMovimientos));
+    const movimientosFromLocalStorage = localStorage.getItem("movimientoGuardado");
+    todosLosMovimientos= JSON.parse(movimientosFromLocalStorage)
+
 
 
 drawMovement(todosLosMovimientos)
@@ -60,8 +77,9 @@ function calculoIngerosyGastos (todosLosMovimientos){
 function deleteMovement(id){
   todosLosMovimientos = todosLosMovimientos.filter(movement => id !== movement.id )
   actualizar(todosLosMovimientos)
-  
-
+  localStorage.setItem("movimientoGuardado", JSON.stringify(todosLosMovimientos));
+  todosLosMovimientosActualizados= JSON.parse(movimientosFromLocalStorage)
+  inicio(todosLosMovimientosActualizados)
 
 }
 
@@ -69,8 +87,6 @@ function actualizar(movimientos){
   drawMovement(movimientos)
   calculoIngerosyGastos(movimientos)
 }
-
-
 
 function drawMovement(todosLosMovimientos){
   movementListElement.innerHTML=""
