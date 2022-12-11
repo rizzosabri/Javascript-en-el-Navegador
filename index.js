@@ -13,17 +13,11 @@ createMovementFormElement.addEventListener("submit",(event)=>
 
     const inputMonto = document.querySelector("#monto-del-movimiento");
     const inputConcepto= document.querySelector("#nombre-del-movimiento");
-
-    let movement =  {
-        money: parseFloat(inputMonto.value),
-        concept: inputConcepto.value,
-        id: Math.floor(Math.random() * 100000000)
-      }
-
-     todosLosMovimientos.push({
+    
+      todosLosMovimientos.push({
       money: parseFloat(inputMonto.value),
       concept: inputConcepto.value,
-      id: movement.id
+      id: Math.floor(Math.random() * 100000000)
     }) 
 
 
@@ -57,9 +51,9 @@ function calculoIngerosyGastos (todosLosMovimientos){
   let ahorroElement= document.querySelector("#ahorro-display")
   
   
-  ahorroElement.textContent = totalAhorro
-  ingresoElement.textContent= totalIngreso
-  gastoElement.textContent= totalGasto
+  ahorroElement.textContent = `${totalAhorro}€`
+  ingresoElement.textContent= `${totalIngreso}€`
+  gastoElement.textContent= `${totalGasto}€`
 }
 
 
@@ -83,8 +77,8 @@ function drawMovement(todosLosMovimientos){
   for (let i = 0; i <= todosLosMovimientos.length-1 ; i++) {
   const movementElement= document.createElement("article");
   movementElement.innerHTML= `
-   <p> ${todosLosMovimientos[i].concept}  :  ${todosLosMovimientos[i].money} € </p> 
-   <button onclick="deleteMovement(${todosLosMovimientos[i].id})">Borrar Movimiento</button>`
+   <p id=pBorrar> ${todosLosMovimientos[i].concept}  :  ${todosLosMovimientos[i].money} €</p> 
+   <button id=botonBorrar onclick="deleteMovement(${todosLosMovimientos[i].id})">Borrar Movimiento</button>`
   movementListElement.appendChild(movementElement)}
 }
 

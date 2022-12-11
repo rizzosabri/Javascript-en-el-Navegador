@@ -5,42 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONTROL DE GASTOS</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <h2>CONTROL DE GASTOS</h2> 
-    <div></div>
-        <h4>Tu Ahorro</h4>     
-        <p id="ahorro-display">0</p>
-        </div>
-    <div>
-        <table class="default">
+    <h3>Tu Ahorro</h3>     
+    <div id="ahorro-display">0 €</div>
+    <table  class="table">
             <tr>
-              <td>INGRESO</td>         
-              <td>GASTO</td>
+              <td><center><b>INGRESO</b></center></td>         
+              <td><center><b>GASTO</b></center></td>
             </tr>         
             <tr>         
-              <td id="ingreso">0</td>
-              <td id="gasto">0</script></td>
+              <td id="ingreso"><center>0 € </center></td>
+              <td id="gasto"><center>0 €</center></td>
             </tr>         
          </table>
     </div>
 
     <h4>Historial</h4>
-    <p id="conceptosAñadidos"></p>
     <section class="movement-list"></section>
     <div >
     <h4>Añadir nueva transaccion</h4>
-
         <form id="añadir-nuevo-movimiento"  novalidate>
             <p>Concepto</p>
-            <input id=nombre-del-movimiento type="text" placeholder="Añade Concepto...">            
+            <input id=nombre-del-movimiento type="text" placeholder="Añade Concepto..." required/>            
             <p>Cantidad</p>
-            <input id=monto-del-movimiento type="number" step="any" placeholder="Ingrese la cantidad...">  
+            <p id="instrucciones"> Introducir gastos con el signo negativo</p>
+            <input id=monto-del-movimiento type="number" step="any" placeholder="Ingrese la cantidad..." required/>  
+            <br>
             <button type="submit" id="createMovimiento"  >Añadir Movimiento</button>   
         </form>
     </div>
 
- 
+ <br>
     
     <script src="index.js"></script>
    
