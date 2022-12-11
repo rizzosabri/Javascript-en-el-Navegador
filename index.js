@@ -10,43 +10,26 @@ createMovementFormElement.addEventListener("submit",(event)=>
 {
     event.preventDefault();
 
+
     const inputMonto = document.querySelector("#monto-del-movimiento");
     const inputConcepto= document.querySelector("#nombre-del-movimiento");
 
     let movement =  {
         money: parseFloat(inputMonto.value),
         concept: inputConcepto.value,
+        id: Math.floor(Math.random() * 100000000)
       }
 
-// creo array de objetos.
-todosLosMovimientos.push({movement}) 
-
-// creo array de gastos e ingresos y la suma de sus totales.
-let arrIngresos=[0]
-let arrGastos=[0]
-  for (let i = 0; i <= todosLosMovimientos.length-1 ; i++) {
-    if (todosLosMovimientos[i].movement.money >0){
-    arrIngresos.push(todosLosMovimientos[i].movement.money)    
-  }   else {arrGastos.push((todosLosMovimientos[i].movement.money))}  
-}  
+     todosLosMovimientos.push({
+      money: parseFloat(inputMonto.value),
+      concept: inputConcepto.value,
+      id: movement.id
+    }) 
 
 
-let totalIngreso=arrIngresos.reduce(function(a, b){ return a + b; })
-let totalGasto=arrGastos.reduce(function(a, b){ return a + b; })
-let totalAhorro=totalIngreso+totalGasto
-
-   
-let ingresoElement = document.querySelector("#ingreso")
-let gastoElement = document.querySelector("#gasto")
-let ahorroElement= document.querySelector("#ahorro-display")
-
-
-ahorroElement.textContent = totalAhorro
-ingresoElement.textContent= totalIngreso
-gastoElement.textContent= totalGasto
-
-
-drawMovements()
+drawMovement(todosLosMovimientos)
+ 
+calculoIngerosyGastos(todosLosMovimientos)
 
 //vacio imputs.
 inputMonto.value = "";
@@ -54,17 +37,57 @@ inputConcepto.value= "";
 
 })
 
+function calculoIngerosyGastos (todosLosMovimientos){
+  let arrIngresos=[0]
+  let arrGastos=[0]
+    for (let i = 0; i <= todosLosMovimientos.length-1 ; i++) {
+      if (todosLosMovimientos[i].money >0){
+      arrIngresos.push(todosLosMovimientos[i].money)    
+    }   else {arrGastos.push((todosLosMovimientos[i].money))}  
+  }  
+  
+  
+  let totalIngreso=arrIngresos.reduce(function(a, b){ return a + b; })
+  let totalGasto=arrGastos.reduce(function(a, b){ return a + b; })
+  let totalAhorro=totalIngreso+totalGasto
+  
+     
+  let ingresoElement = document.querySelector("#ingreso")
+  let gastoElement = document.querySelector("#gasto")
+  let ahorroElement= document.querySelector("#ahorro-display")
+  
+  
+  ahorroElement.textContent = totalAhorro
+  ingresoElement.textContent= totalIngreso
+  gastoElement.textContent= totalGasto
+}
 
-function drawMovements(){
 
+function deleteMovement(id){
+  todosLosMovimientos = todosLosMovimientos.filter(movement => id !== movement.id )
+  actualizar(todosLosMovimientos)
+  
+
+
+}
+
+function actualizar(movimientos){
+  drawMovement(movimientos)
+  calculoIngerosyGastos(movimientos)
+}
+
+
+
+function drawMovement(todosLosMovimientos){
   movementListElement.innerHTML=""
-  todosLosMovimientos.forEach((movement)=>{
+  for (let i = 0; i <= todosLosMovimientos.length-1 ; i++) {
   const movementElement= document.createElement("article");
   movementElement.innerHTML= `
-   <p> ${movement.movement.concept}  :  ${movement.movement.money} € </p> `
-movementListElement.appendChild(movementElement)
-})
+   <p> ${todosLosMovimientos[i].concept}  :  ${todosLosMovimientos[i].money} € </p> 
+   <button onclick="deleteMovement(${todosLosMovimientos[i].id})">Borrar Movimiento</button>`
+  movementListElement.appendChild(movementElement)}
 }
+
 
 
 
